@@ -12,7 +12,7 @@
 {% for comment in post.comment_set.all %}
 {{ comment.message|linebreaks }}
 {% endfor %}
-
+<a href="{% url 'comment_new' post.pk%}">댓글쓰기</a>
 <hr/>
 <a href="{% url 'index' %}">목록</a>
 <a href="{% url 'post_edit' post.pk %}">수정</a>

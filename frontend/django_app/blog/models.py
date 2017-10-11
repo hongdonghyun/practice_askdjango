@@ -21,5 +21,8 @@ class Comment(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.pk])
+
     def __str__(self):
         return '[{}]의 댓글 [{}]"'.format(self.post, self.message)
