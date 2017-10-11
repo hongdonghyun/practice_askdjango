@@ -8,6 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-<h1>test</h1>
+<table>
+    {% for post in post_list %}
+    <tbody>
+    <tr>
+        <td>
+            <a href="{{ post.get_absolute_url }}">
+                {{ post.title }}
+            </a>
+        </td>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+<hr>
+<a href="{% url 'post_new' %}" >새글쓰기</a>
 </body>
 </html>

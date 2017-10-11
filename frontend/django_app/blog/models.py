@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -6,6 +7,9 @@ class Post(models.Model):
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.pk])
 
 
 class Comment(models.Model):
