@@ -11,9 +11,15 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail', args=[self.pk])
 
+    def __str__(self):
+        return self.title
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
     message = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '[{}]의 댓글 [{}]"'.format(self.post, self.message)
