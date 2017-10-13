@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, resolve_url
+from django.shortcuts import get_object_or_404, resolve_url, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -23,6 +23,21 @@ class CommentCreateView(CreateView):
         comment = form.save(commit=False)
         comment.post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return resolve_url(self.object.post)
+
+
+class CommentEditView(UpdateView):
+    model = Comment
+    fields = ['message']
+
+    def get_success_url(self):
+        return resolve_url(self.object.post)
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
 
     def get_success_url(self):
         return resolve_url(self.object.post)

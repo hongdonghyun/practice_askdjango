@@ -13,6 +13,8 @@
 <li>
     {{ comment.message }}
     &dash; <small>{{ commnet.created_date }}</small>
+    <a href="{% url 'comment_edit' post.pk comment.pk %}">댓글수정</a>
+    <a href="{% url 'comment_delete' post.pk comment.pk %}">댓글삭제</a>
     </li>
 {% endfor %}
 <a href="{% url 'comment_new' post.pk%}">댓글쓰기</a>
