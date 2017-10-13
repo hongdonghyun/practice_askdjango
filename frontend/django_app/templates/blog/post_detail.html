@@ -10,7 +10,10 @@
 <hr/>
 
 {% for comment in post.comment_set.all %}
-{{ comment.message|linebreaks }}
+<li>
+    {{ comment.message }}
+    &dash; <small>{{ commnet.created_date }}</small>
+    </li>
 {% endfor %}
 <a href="{% url 'comment_new' post.pk%}">댓글쓰기</a>
 <hr/>

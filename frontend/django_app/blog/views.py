@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -13,4 +14,15 @@ post_delete = DeleteView.as_view(model=Post, success_url=reverse_lazy('index'))
 
 post_new = CreateView.as_view(model=Post, fields='__all__')
 
-comment_new = CreateView.as_view(model=Comment, fields='__all__',success_url=reverse_lazy('post_detail'))
+
+class CommentCreateView(CreateView):
+    model = Comment
+    fields = ['message']
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return resolve_url(self.object.post)

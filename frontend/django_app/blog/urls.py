@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/delete/$', views.post_delete, name='post_delete'),
 
     # comment
-    url(r'^(?P<pk>\d+)/comment_new/$', views.comment_new, name='comment_new'),
+    url(r'^(?P<post_pk>\d+)/comment_new/$', views.CommentCreateView.as_view(), name='comment_new'),
 
 ]
