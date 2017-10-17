@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'blog',
 
+    'bootstrap3',
     'django_extensions',
 
 ]
