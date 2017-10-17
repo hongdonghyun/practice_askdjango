@@ -12,7 +12,7 @@ urlpatterns = [
 
     # comment
     url(r'^(?P<post_pk>\d+)/comment_new/$', views.CommentCreateView.as_view(), name='comment_new'),
-    url(r'^(?P<post_pk>\d+)/comments/(?P<comment_pk>\d+)/edit$', views.CommentEditView.as_view(), name='comment_edit'),
+    url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/edit$', views.CommentEditView.as_view(), name='comment_edit'),
     url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/delete$', views.CommentDeleteView.as_view(), name='comment_delete'),
 
 ]

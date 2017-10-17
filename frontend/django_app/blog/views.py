@@ -21,7 +21,7 @@ class CommentCreateView(CreateView):
 
     def form_valid(self, form):
         comment = form.save(commit=False)
-        comment.post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+        comment.post = get_object_or_404(Post, pk=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self):

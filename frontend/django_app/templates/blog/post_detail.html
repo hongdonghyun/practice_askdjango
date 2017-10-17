@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1> {{ post.title }}</h1>
-{{ post.content|linebreaks}}
-<hr/>
+{% extends 'layout/layout.html' %}
 
-{% for comment in post.comment_set.all %}
-<li>
-    {{ comment.message }}
-    &dash; <small>{{ commnet.created_date }}</small>
-    <a href="{% url 'comment_edit' post.pk comment.pk %}">댓글수정</a>
-    <a href="{% url 'comment_delete' post.pk comment.pk %}">댓글삭제</a>
-    </li>
-{% endfor %}
-<a href="{% url 'comment_new' post.pk%}">댓글쓰기</a>
-<hr/>
-<a href="{% url 'index' %}">목록</a>
-<a href="{% url 'post_edit' post.pk %}">수정</a>
-<a href="{% url 'post_delete' post.pk %}">삭제</a>
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1> {{ post.title }}</h1>
+            {{ post.content|linebreaks}}
+            <hr/>
+
+            {% for comment in post.comment_set.all %}
+            <li>
+                {{ comment.message }}
+                &dash;
+                <small>{{ commnet.created_date }}</small>
+                <a href="{% url 'comment_edit' post.pk comment.pk %}">댓글수정</a>
+                <a href="{% url 'comment_delete' post.pk comment.pk %}">댓글삭제</a>
+            </li>
+            {% endfor %}
+            <a class="btn btn-primary btn-block" href="{% url 'comment_new' post.pk%}">댓글쓰기</a>
+            <hr/>
+            <a class="btn btn-primary" href="{% url 'index' %}">목록</a>
+            <a class="btn btn-primary" href="{% url 'post_edit' post.pk %}">수정</a>
+            <a class="btn btn-danger" href="{% url 'post_delete' post.pk %}">삭제</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
