@@ -1,10 +1,10 @@
-from django.shortcuts import get_object_or_404, resolve_url, redirect
+from django.shortcuts import get_object_or_404, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
 from blog.models import Post, Comment
 
-index = ListView.as_view(model=Post, template_name='blog/index.html')
+index = ListView.as_view(model=Post, template_name='blog/index.html', paginate_by=1)
 
 post_detail = DetailView.as_view(model=Post)
 

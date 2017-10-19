@@ -18,8 +18,19 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <hr />
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">이전</a>
+                {% endif %}
 
-            <hr>
+                {{ page_obj.number }} 페이지
+
+                {% if page_obj.next_page_number %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">다음</a>
+                {% endif %}
+            {% endif %}
+            <hr />
             <a class="btn btn-primary"href="{% url 'post_new' %}">새글쓰기</a>
 
         </div>
