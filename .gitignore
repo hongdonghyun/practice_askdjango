@@ -4,6 +4,7 @@
 migrations/
 .DS_Store
 .config_secret
+bower_components
 
 # Created by https://www.gitignore.io/api/git,vim,linux,macos,python,django,pycharm,elasticbeanstalk
 
